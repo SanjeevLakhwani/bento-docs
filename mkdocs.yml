@@ -1,0 +1,4 @@
+site_name: "Bento Documentation"
+
+theme:
+  name: "material"
