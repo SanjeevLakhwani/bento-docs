@@ -44,7 +44,7 @@ BENTO_PUBLIC_FORCE_CATALOGUE='true'
 ## 4. Enabling MinIO
 
 To enable the deployment of a MinIO server for S3 storage, refer to the documentation on
-[configuring MinIO for Bento](./minio.md).
+[configuring MinIO for Bento](../minio.md).
 
 ## 5. Restart services
 
