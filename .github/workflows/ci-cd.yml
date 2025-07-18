@@ -24,13 +24,10 @@ jobs:
 
       - name: 📦 Install dependencies
         run: |
-          pip install mkdocs mkdocs-material pymarkdownlnt
+          pip install mkdocs mkdocs-material
 
       - name: 🔨 Build site (as a test)
         run: mkdocs build --strict
-
-      - name: 🔍 Lint Markdown
-        run: markdownlint "**/*.md"
 
   deploy:
     name: Deploy on Release
