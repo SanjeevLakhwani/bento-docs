@@ -3,7 +3,6 @@ on:
   release:
     types:
       - published
-  workflow_dispatch: {}
 permissions:
   contents: write
   pages: write
@@ -11,26 +10,26 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+          persist-credentials: true
+      - run: git fetch origin gh-pages:gh-pages
       - name: Configure Git author
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - uses: actions/setup-python@v4
         with:
           python-version: "3.x"
-      - name: Install dependencies
-        run: pip install mkdocs-material mike
-      - name: Deploy versioned docs
-        env:
+      - run: pip install mkdocs-material mike
+      - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="${{ github.event.release.tag_name }}"
           mike deploy "$TAG" --push
-      - name: Update “latest” alias
-        env:
+      - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="${{ github.event.release.tag_name }}"
