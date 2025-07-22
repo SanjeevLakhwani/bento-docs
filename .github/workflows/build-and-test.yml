@@ -9,21 +9,24 @@ on:
 ## TODO: Add linting for md
 jobs:
   build-and-test:
-    name: Build & Test Documentation
     runs-on: ubuntu-latest
-
     steps:
-      - name: 📥 Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-      - name: 🐍 Setup Python
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.x"
 
-      - name: 📦 Install dependencies
-        run: |
-          pip install mkdocs mkdocs-material mike
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
 
-      - name: 🔨 Build site (strict)
+      - name: Install dependencies
+        run: |
+          poetry config virtualenvs.create false
+          poetry install --no-interaction --no-ansi
+
+      - name: Build docs
         run: mkdocs build --strict
