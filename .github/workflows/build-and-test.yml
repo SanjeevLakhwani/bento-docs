@@ -23,7 +23,7 @@ jobs:
 
       - name: 📦 Install dependencies
         run: |
-          pip install mkdocs mkdocs-material
+          pip install mkdocs mkdocs-material mike
 
       - name: 🔨 Build site (strict)
         run: mkdocs build --strict
