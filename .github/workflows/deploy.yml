@@ -22,7 +22,7 @@ jobs:
           python-version: "3.x"
 
       - name: Install MkDocs & mike
-        run: pip install mkdocs mike
+        run: pip install mkdocs-material mike
 
       - name: Deploy versioned docs
         env:
