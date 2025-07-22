@@ -1,36 +1,33 @@
 name: 📚 Deploy MkDocs via mike
-
 on:
   release:
-    types: [published]
-
+    types:
+      - published
 permissions:
   contents: write
   pages: write
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-
+      - name: Configure Git author
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.x"
-
-      - name: Install MkDocs & mike
-        run: pip install mkdocs-material mike
-
+      - name: Install dependencies
+        run: pip install mkdocs mike
       - name: Deploy versioned docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="${{ github.event.release.tag_name }}"
           mike deploy "$TAG" --push
-
       - name: Update “latest” alias
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
