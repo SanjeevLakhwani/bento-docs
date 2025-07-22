@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: "3.x"
       - name: Install dependencies
-        run: pip install mkdocs mike
+        run: pip install mkdocs-material mike
       - name: Deploy versioned docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
