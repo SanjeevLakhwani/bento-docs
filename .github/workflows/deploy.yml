@@ -49,3 +49,7 @@ jobs:
         run: |
           TAG="${{ github.event.release.tag_name }}"
           poetry run mike alias "$TAG" latest --update-aliases --push
+
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: poetry run mike set-default latest
