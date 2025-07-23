@@ -1,4 +1,4 @@
-name: 📚 Deploy MkDocs via mike
+name: 📚 Deploy MkDocs via mike - manual
 
 on:
   workflow_dispatch:
