@@ -43,13 +43,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          poetry run mike deploy "${{ github.event.inputs.tag }}" --push --allow-empty --deploy-prefix docs
-
-      - name: mike alias
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          poetry run mike alias "${{ github.event.inputs.tag }}" latest --update-aliases --push
+          poetry run mike deploy "${{ github.event.inputs.tag }}" latest --push --allow-empty --deploy-prefix docs
 
       - name: mike set-default
         run: |
