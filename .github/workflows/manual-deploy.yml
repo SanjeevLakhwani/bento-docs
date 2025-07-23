@@ -40,10 +40,8 @@ jobs:
         run: poetry install --no-interaction --no-ansi --no-root
 
       - name: mike deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          poetry run mike deploy "${{ github.event.inputs.tag }}" latest --push --allow-empty --deploy-prefix docs
+          poetry run mike deploy "${{ github.event.inputs.tag }}" latest --push --allow-empty --deploy-prefix docs --F mkdocs.deploy.yml
 
       - name: mike set-default
         run: |

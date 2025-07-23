@@ -1,5 +1,5 @@
 site_name: "Bento Documentation"
-site_dir: "docs"
+site_dir: "build"
 
 site_url: https://SanjeevLakhwani.github.io/bento-docs/
 repo_url: https://github.com/SanjeevLakhwani/bento-docs
@@ -9,7 +9,7 @@ theme:
 
 plugins:
   - mike:
-      alias_type: symlink
+      alias_type: copy
       redirect_template: null
       deploy_prefix: ""
       canonical_version: null
