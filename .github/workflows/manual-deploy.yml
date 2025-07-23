@@ -41,7 +41,7 @@ jobs:
 
       - name: mike deploy
         run: |
-          poetry run mike deploy "${{ github.event.inputs.tag }}" latest --push --allow-empty --deploy-prefix docs -F mkdocs.deploy.yml
+          poetry run mike deploy "${{ github.event.inputs.tag }}" latest --push --allow-empty -F mkdocs.deploy.yml
 
       - name: mike set-default
         run: |
