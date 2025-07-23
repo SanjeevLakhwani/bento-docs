@@ -38,18 +38,7 @@ jobs:
       - name: Install dependencies
         run: poetry install --no-interaction --no-ansi --no-root
 
-      - env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy documentation
         run: |
           TAG="${{ github.event.release.tag_name }}"
-          poetry run mike deploy "$TAG" --push
-
-      - env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          TAG="${{ github.event.release.tag_name }}"
-          poetry run mike alias "$TAG" latest --update-aliases --push
-
-      - env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: poetry run mike set-default latest
+          poetry run mike deploy "$TAG" latest --push
